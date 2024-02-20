@@ -16,7 +16,8 @@ class NewPlan extends StatefulWidget {
 class _NewPlanState extends State<NewPlan> {
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
   Color _selectedColor = ColorConstant.crackPurple;
-
+  TextStyle textFieldStyle =
+  TextStyle(color: ColorConstant.crackGrayLight, fontSize: 30);
   TextStyle textStyle =
       TextStyle(color: ColorConstant.crackGrayLight, fontSize: 34);
   TextStyle selectTextStyle =
@@ -44,61 +45,65 @@ class _NewPlanState extends State<NewPlan> {
         ),
         backgroundColor: ColorConstant.crackBlack,
       ),
-      body: Stack(
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Text(
-                  'New plan',
-                  style: textStyle,
-                ),
-              ),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
               Column(
-                children: [
-                  SizedBox(
-                    height: 15,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30),
+                    child: Text(
+                      'New plan',
+                      style: textStyle,
+                    ),
                   ),
-                  title(),
-                  Divider(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  date(),
-                  Divider(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  shapeSize(),
-                  Divider(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  taskKind(),
-                  Divider(),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      title(),
+                      Divider(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      date(),
+                      Divider(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      shapeSize(),
+                      Divider(),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      taskKind(),
+                      Divider(),
+                    ],
+                  )
                 ],
+              ),
+              SizedBox(
+                height: 135,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: _selectedColor,
+                  ),
+                  child: Icon(Icons.add, size: 35,),
+                ),
               )
             ],
           ),
-          Positioned(
-            bottom: 0,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.only(bottom: 35),
-                width: MediaQuery.of(context).size.width,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: _selectedColor,
-                ),
-                child: Icon(Icons.add, size: 35,),
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -110,6 +115,7 @@ class _NewPlanState extends State<NewPlan> {
           child: Padding(
             padding: EdgeInsets.only(right: 12),
             child: TextField(
+              style: textFieldStyle,
               decoration: InputDecoration(
                 hintText: 'Title',
                 hintStyle: TextStyle(
