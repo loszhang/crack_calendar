@@ -102,7 +102,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 98,
+                    width: 120,
                     child: Text(
                       'Cleaning Room',
                       style: TextStyle(
