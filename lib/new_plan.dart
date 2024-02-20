@@ -38,50 +38,15 @@ class _NewPlanState extends State<NewPlan> {
             padding: EdgeInsets.only(left: 30),
             child: Text(
               'New plan',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              style: TextStyle(color: ColorConstant.crackGrayMedium, fontSize: 30),
             ),
           ),
           Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Title',
-                        hintStyle: TextStyle(
-                            color: ColorConstant.crackGrayMedium, fontSize: 30),
-                        border: InputBorder.none,
-                        // 去掉下划线
-                        contentPadding: EdgeInsets.only(left: 10),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            _showColorPickerDialog(context)
-                                .then((selectedColor) {
-                              if (selectedColor != null) {
-                                // 处理选中的颜色，例如将其用于设置某些状态或UI。
-                                print("选中的颜色: $selectedColor");
-                                setState(() {
-                                  _selectedColor = selectedColor;
-                                });
-                              }
-                            });
-                          },
-                          child: Container(
-                            width: 10,
-                            decoration: BoxDecoration(
-                              color: _selectedColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                          ),
-                        ),
-                        // 可以添加其他装饰属性，如hintText
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(height: 15,),
+              title(),
+              Divider(),
+              date(),
               Divider(),
               GestureDetector(
                 onTap: () {},
@@ -98,6 +63,46 @@ class _NewPlanState extends State<NewPlan> {
           )
         ],
       ),
+    );
+  }
+
+  Widget title() {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Title',
+              hintStyle:
+                  TextStyle(color: ColorConstant.crackGrayMedium, fontSize: 30),
+              border: InputBorder.none,
+              // 去掉下划线
+              contentPadding: EdgeInsets.only(left: 30),
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  _showColorPickerDialog(context).then((selectedColor) {
+                    if (selectedColor != null) {
+                      // 处理选中的颜色，例如将其用于设置某些状态或UI。
+                      print("选中的颜色: $selectedColor");
+                      setState(() {
+                        _selectedColor = selectedColor;
+                      });
+                    }
+                  });
+                },
+                child: Container(
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: _selectedColor,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+              ),
+              // 可以添加其他装饰属性，如hintText
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -118,6 +123,20 @@ class _NewPlanState extends State<NewPlan> {
           ],
         );
       },
+    );
+  }
+
+  Widget date() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Today', style: TextStyle(color: ColorConstant.crackGrayMedium, fontSize: 34),),
+            Text('5:00 PM', style: TextStyle(color: ColorConstant.crackGrayMedium, fontSize: 34),)
+          ],
+        )
+      ],
     );
   }
 }
