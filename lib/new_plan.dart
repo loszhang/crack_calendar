@@ -36,6 +36,9 @@ class _NewPlanState extends State<NewPlan> {
     super.initState();
   }
 
+  SizedBox sizedBox4 = const SizedBox(width: 4,);
+  SizedBox sizedBox15 = const SizedBox(height: 15,);
+
   // 这个方法用于改变颜色，它可以作为回调传递给 CustomLWidget
   void _changeColor(Color color) {
     setState(() {
@@ -49,7 +52,7 @@ class _NewPlanState extends State<NewPlan> {
       backgroundColor: ColorConstant.crackBlack,
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -57,7 +60,7 @@ class _NewPlanState extends State<NewPlan> {
         backgroundColor: ColorConstant.crackBlack,
       ),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -67,7 +70,7 @@ class _NewPlanState extends State<NewPlan> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(left: 30),
+                    padding: const EdgeInsets.only(left: 30),
                     child: Text(
                       'New plan',
                       style: textStyle,
@@ -75,26 +78,18 @@ class _NewPlanState extends State<NewPlan> {
                   ),
                   Column(
                     children: [
-                      SizedBox(
-                        height: 15,
-                      ),
+                      sizedBox15,
                       title(),
-                      Divider(),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      const Divider(),
+                      sizedBox15,
                       date(),
-                      Divider(),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      const Divider(),
+                      sizedBox15,
                       shapeSize(),
-                      Divider(),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      const Divider(),
+                      sizedBox15,
                       taskKind(),
-                      Divider(),
+                      const Divider(),
                     ],
                   )
                 ],
@@ -109,7 +104,7 @@ class _NewPlanState extends State<NewPlan> {
                     decoration: BoxDecoration(
                       color: _selectedColor,
                     ),
-                    child: Icon(Icons.add, size: 35,),
+                    child: const Icon(Icons.add, size: 35,),
                   ),
                 ),
               )
@@ -125,7 +120,7 @@ class _NewPlanState extends State<NewPlan> {
       children: [
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(right: 12),
+            padding: const EdgeInsets.only(right: 12),
             child: TextField(
               style: textFieldStyle,
               decoration: InputDecoration(
@@ -134,13 +129,12 @@ class _NewPlanState extends State<NewPlan> {
                     color: ColorConstant.crackGrayMedium, fontSize: 30),
                 border: InputBorder.none,
                 // 去掉下划线
-                contentPadding: EdgeInsets.only(left: 30),
+                contentPadding: const EdgeInsets.only(left: 30),
                 suffixIcon: GestureDetector(
                   onTap: () {
                     _showColorPickerDialog(context).then((selectedColor) {
                       if (selectedColor != null) {
                         // 处理选中的颜色，例如将其用于设置某些状态或UI。
-                        print("选中的颜色: $selectedColor");
                         setState(() {
                           _selectedColor = selectedColor;
                         });
@@ -151,7 +145,7 @@ class _NewPlanState extends State<NewPlan> {
                     width: 10,
                     decoration: BoxDecoration(
                       color: _selectedColor,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
                 ),
@@ -201,7 +195,7 @@ class _NewPlanState extends State<NewPlan> {
                   style: textStyle,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 30),
                   child: Text(
                     '${DateFormat('EEE').format(selectDay)}, ${DateFormat('d').format(selectDay)}',
                     style: selectTextStyle,
@@ -215,7 +209,7 @@ class _NewPlanState extends State<NewPlan> {
           ),
           GestureDetector(
             child: Padding(
-              padding: EdgeInsets.only(right: 12),
+              padding: const EdgeInsets.only(right: 12),
               child: Column(
                 children: [
                   Text(
@@ -247,7 +241,6 @@ class _NewPlanState extends State<NewPlan> {
               maxDate: DateTime(2024, 12, 31),
               onDateSelected: (value) {
                 Navigator.pop(context);
-                print(selectDay);
                 // Handle selected date
                 setState(() {
                   selectDay = value;
@@ -260,7 +253,7 @@ class _NewPlanState extends State<NewPlan> {
 
   Widget taskKind() {
     return Padding(
-      padding: EdgeInsets.only(left: 30),
+      padding: const EdgeInsets.only(left: 30),
       child: SizedBox(
         height: 100,
         child: Row(
@@ -277,16 +270,12 @@ class _NewPlanState extends State<NewPlan> {
                 });
               },
             ),
-            SizedBox(
-              width: 4,
-            ),
+            sizedBox4,
             Text(
               '/',
               style: selectTextStyle,
             ),
-            SizedBox(
-              width: 4,
-            ),
+            sizedBox4,
             GestureDetector(
               child: Text(
                 'Team',
@@ -306,7 +295,7 @@ class _NewPlanState extends State<NewPlan> {
 
   Widget shapeSize() {
     return Padding(
-      padding: EdgeInsets.only(left: 30),
+      padding: const EdgeInsets.only(left: 30),
       child: SizedBox(
         height: 100,
         child: Row(
@@ -326,16 +315,12 @@ class _NewPlanState extends State<NewPlan> {
                     });
                   },
                 ),
-                SizedBox(
-                  width: 4,
-                ),
+                sizedBox4,
                 Text(
                   '/',
                   style: selectTextStyle,
                 ),
-                SizedBox(
-                  width: 4,
-                ),
+                sizedBox4,
                 GestureDetector(
                   child: Text(
                     'M',
@@ -347,16 +332,12 @@ class _NewPlanState extends State<NewPlan> {
                     });
                   },
                 ),
-                SizedBox(
-                  width: 4,
-                ),
+                sizedBox4,
                 Text(
                   '/',
                   style: selectTextStyle,
                 ),
-                SizedBox(
-                  width: 4,
-                ),
+                sizedBox4,
                 GestureDetector(
                   child: Text(
                     'H',
