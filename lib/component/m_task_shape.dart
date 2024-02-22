@@ -12,7 +12,7 @@ class MTaskShape extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // 调用父组件传递过来的方法以改变颜色
-        onColorChange(Colors.red);
+        onColorChange(currentColor);
       },
       child: Padding(
         padding: EdgeInsets.only(right: 12),
