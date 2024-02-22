@@ -2,13 +2,14 @@ import 'dart:ui';
 
 import 'package:calendar/color_constant.dart';
 import 'package:calendar/component/color_item.dart';
+import 'package:calendar/component/f_task_shape.dart';
 import 'package:calendar/component/h_task_shape.dart';
-import 'package:calendar/component/m_task_shape.dart';
+import 'package:calendar/component/l_task_shape.dart';
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'component/l_task_shape.dart';
+import 'component/i_task_shape.dart';
 
 class NewPlan extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _NewPlanState extends State<NewPlan> {
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd");
   Color _selectedColor = ColorConstant.crackPurple;
   TextStyle textFieldStyle =
-  TextStyle(color: ColorConstant.crackGrayLight, fontSize: 30);
+      TextStyle(color: ColorConstant.crackGrayLight, fontSize: 30);
   TextStyle textStyle =
       TextStyle(color: ColorConstant.crackGrayLight, fontSize: 34);
   TextStyle selectTextStyle =
@@ -36,8 +37,12 @@ class _NewPlanState extends State<NewPlan> {
     super.initState();
   }
 
-  SizedBox sizedBox4 = const SizedBox(width: 4,);
-  SizedBox sizedBox15 = const SizedBox(height: 15,);
+  SizedBox sizedBox4 = const SizedBox(
+    width: 4,
+  );
+  SizedBox sizedBox15 = const SizedBox(
+    height: 15,
+  );
 
   // 这个方法用于改变颜色，它可以作为回调传递给 CustomLWidget
   void _changeColor(Color color) {
@@ -109,7 +114,10 @@ class _NewPlanState extends State<NewPlan> {
                       decoration: BoxDecoration(
                         color: _selectedColor,
                       ),
-                      child: const Icon(Icons.add, size: 35,),
+                      child: const Icon(
+                        Icons.add,
+                        size: 35,
+                      ),
                     ),
                   ),
                 )
@@ -195,7 +203,7 @@ class _NewPlanState extends State<NewPlan> {
               children: [
                 Text(
                   dateFormat.format(selectDay) ==
-                      dateFormat.format(DateTime.now())
+                          dateFormat.format(DateTime.now())
                       ? 'Today'
                       : '${selectDay.year}/${selectDay.month}',
                   style: textStyle,
@@ -312,6 +320,23 @@ class _NewPlanState extends State<NewPlan> {
               children: [
                 GestureDetector(
                   child: Text(
+                    'I',
+                    style: kindStr == 'I' ? textStyle : selectTextStyle,
+                  ),
+                  onTap: () {
+                    setState(() {
+                      kindStr = 'I';
+                    });
+                  },
+                ),
+                sizedBox4,
+                Text(
+                  '/',
+                  style: selectTextStyle,
+                ),
+                sizedBox4,
+                GestureDetector(
+                  child: Text(
                     'L',
                     style: kindStr == 'L' ? textStyle : selectTextStyle,
                   ),
@@ -329,12 +354,12 @@ class _NewPlanState extends State<NewPlan> {
                 sizedBox4,
                 GestureDetector(
                   child: Text(
-                    'M',
-                    style: kindStr == 'M' ? textStyle : selectTextStyle,
+                    'F',
+                    style: kindStr == 'F' ? textStyle : selectTextStyle,
                   ),
                   onTap: () {
                     setState(() {
-                      kindStr = 'M';
+                      kindStr = 'F';
                     });
                   },
                 ),
@@ -357,11 +382,19 @@ class _NewPlanState extends State<NewPlan> {
                 )
               ],
             ),
-            kindStr == 'L' ? LTaskShape(currentColor: _selectedColor, onColorChange: _changeColor) : (kindStr == 'M' ? MTaskShape(currentColor: _selectedColor, onColorChange: _changeColor) : HTaskShape(currentColor: _selectedColor, onColorChange: _changeColor))
+            kindStr == 'I'
+                ? ITaskShape(
+                    currentColor: _selectedColor, onColorChange: _changeColor)
+                : (kindStr == 'L'
+                    ? LTaskShape(
+                        currentColor: _selectedColor,
+                        onColorChange: _changeColor)
+                    : kindStr == 'F' ? FTaskShape(currentColor: _selectedColor, onColorChange: _changeColor) : HTaskShape(
+                currentColor: _selectedColor,
+                onColorChange: _changeColor)),
           ],
         ),
       ),
     );
   }
-
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LTaskShape extends StatelessWidget {
+class FTaskShape extends StatelessWidget {
   final Color currentColor;
   final Function(Color) onColorChange;
 
-  LTaskShape({Key? key, required this.currentColor, required this.onColorChange})
+  FTaskShape({Key? key, required this.currentColor, required this.onColorChange})
       : super(key: key);
 
   @override
@@ -25,9 +25,12 @@ class LTaskShape extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     color: currentColor,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
                 ),
                 Container(
                   width: 50,
@@ -42,8 +45,7 @@ class LTaskShape extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     color: currentColor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                 ),
                 Container(
@@ -51,10 +53,17 @@ class LTaskShape extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                     color: currentColor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                 ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: currentColor,
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                )
               ],
             )
           ],

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MTaskShape extends StatelessWidget {
+class ITaskShape extends StatelessWidget {
   final Color currentColor;
   final Function(Color) onColorChange;
 
-  MTaskShape({Key? key, required this.currentColor, required this.onColorChange})
+  ITaskShape({Key? key, required this.currentColor, required this.onColorChange})
       : super(key: key);
 
   @override
@@ -25,15 +25,6 @@ class MTaskShape extends StatelessWidget {
                 color: currentColor,
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10)),
-              ),
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: currentColor,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10)),
               ),
             ),
             Container(
