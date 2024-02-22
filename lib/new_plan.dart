@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:calendar/color_constant.dart';
@@ -46,9 +47,10 @@ class _NewPlanState extends State<NewPlan> {
         backgroundColor: ColorConstant.crackBlack,
       ),
       body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
-          child: Column(
+          child: Stack(
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -87,18 +89,18 @@ class _NewPlanState extends State<NewPlan> {
                   )
                 ],
               ),
-              SizedBox(
-                height: 135,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: _selectedColor,
+              Positioned(
+                bottom: 80,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: _selectedColor,
+                    ),
+                    child: Icon(Icons.add, size: 35,),
                   ),
-                  child: Icon(Icons.add, size: 35,),
                 ),
               )
             ],
