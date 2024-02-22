@@ -16,7 +16,7 @@ class HTaskShape extends StatelessWidget {
       },
       child: Padding(
         padding: EdgeInsets.only(right: 12),
-        child: Row(
+        child: Column(
           children: <Widget>[
             Row(
               children: [
