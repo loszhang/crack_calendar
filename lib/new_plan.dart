@@ -59,56 +59,62 @@ class _NewPlanState extends State<NewPlan> {
         ),
         backgroundColor: ColorConstant.crackBlack,
       ),
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'New plan',
-                      style: textStyle,
+      body: GestureDetector(
+        onTap: () {
+          // 当点击空白处时，移除焦点，从而关闭键盘
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Text(
+                        'New plan',
+                        style: textStyle,
+                      ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      sizedBox15,
-                      title(),
-                      const Divider(),
-                      sizedBox15,
-                      date(),
-                      const Divider(),
-                      sizedBox15,
-                      shapeSize(),
-                      const Divider(),
-                      sizedBox15,
-                      taskKind(),
-                      const Divider(),
-                    ],
-                  )
-                ],
-              ),
-              Positioned(
-                bottom: 80,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: _selectedColor,
-                    ),
-                    child: const Icon(Icons.add, size: 35,),
-                  ),
+                    Column(
+                      children: [
+                        sizedBox15,
+                        title(),
+                        const Divider(),
+                        sizedBox15,
+                        date(),
+                        const Divider(),
+                        sizedBox15,
+                        shapeSize(),
+                        const Divider(),
+                        sizedBox15,
+                        taskKind(),
+                        const Divider(),
+                      ],
+                    )
+                  ],
                 ),
-              )
-            ],
+                Positioned(
+                  bottom: 80,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: _selectedColor,
+                      ),
+                      child: const Icon(Icons.add, size: 35,),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
