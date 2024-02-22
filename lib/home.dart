@@ -2,6 +2,7 @@ import 'package:calendar/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'component/CustomBottomBar.dart';
 import 'month.dart';
 import 'new_plan.dart';
 
@@ -15,40 +16,52 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool checked = false;
 
+  int selectedIndex = 0;
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: title(),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Month()));
-              },
-              icon: Icon(
-                Icons.keyboard_arrow_right_rounded,
-                size: 50,
-              ),
+      appBar: AppBar(
+        title: title(),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Month()));
+            },
+            icon: Icon(
+              Icons.keyboard_arrow_right_rounded,
+              size: 50,
             ),
-          ],
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              nearly(),
-            ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => NewPlan()));
-          },
-          child: Icon(Icons.add, color: Colors.white, size: 35,),
-          shape: CircleBorder(),
-          backgroundColor: Colors.black,
-        ));
+        ],
+      ),
+      body: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                nearly(),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 20, right: 0, left: 0,
+            child: CustomBottomBar(
+              onItemSelected: onItemTapped,
+              selectedIndex: selectedIndex,
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   @override
