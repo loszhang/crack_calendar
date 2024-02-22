@@ -1,11 +1,14 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:calendar/color_constant.dart';
 import 'package:calendar/component/color_item.dart';
+import 'package:calendar/component/h_task_shape.dart';
+import 'package:calendar/component/m_task_shape.dart';
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'component/l_task_shape.dart';
 
 class NewPlan extends StatefulWidget {
   @override
@@ -31,6 +34,13 @@ class _NewPlanState extends State<NewPlan> {
   @override
   void initState() {
     super.initState();
+  }
+
+  // 这个方法用于改变颜色，它可以作为回调传递给 CustomLWidget
+  void _changeColor(Color color) {
+    setState(() {
+      _selectedColor = color;
+    });
   }
 
   @override
@@ -360,120 +370,11 @@ class _NewPlanState extends State<NewPlan> {
                 )
               ],
             ),
-            kindStr == 'L' ? L() : (kindStr == 'M' ? M() : H())
+            kindStr == 'L' ? LTaskShape(currentColor: _selectedColor, onColorChange: _changeColor) : (kindStr == 'M' ? MTaskShape(currentColor: _selectedColor, onColorChange: _changeColor) : HTaskShape(currentColor: _selectedColor, onColorChange: _changeColor))
           ],
         ),
       ),
     );
   }
 
-  Widget L() {
-    return Padding(
-      padding: EdgeInsets.only(right: 12),
-      child: Row(
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: _selectedColor,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(10)),
-            ),
-          ),
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: _selectedColor,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10)),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget M() {
-    return Padding(
-      padding: EdgeInsets.only(right: 12),
-      child: Row(
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: _selectedColor,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: _selectedColor,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: _selectedColor,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget H() {
-    return Padding(
-      padding: EdgeInsets.only(right: 12),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: _selectedColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-              ),
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: _selectedColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: _selectedColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-              ),
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: _selectedColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }
